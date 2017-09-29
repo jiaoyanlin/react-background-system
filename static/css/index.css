@@ -1,0 +1,66 @@
+.layer{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 60;
+}
+#app{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+/*登录*/
+.login-bg{
+	width: 100%;
+	height: 100%;
+}
+.login-con{
+	width: 400px;
+	margin: 190px auto 0 auto;
+	background: #fff;
+	border-radius: 10px;
+	padding: 20px 60px;
+}
+.login-con .login-form-forgot{
+	float: right;
+}
+.login-con .ant-form-item-control-wrapper a{
+	font-size: 16px;
+	color: #fff;
+}
+.login-con .ant-checkbox-wrapper{
+	font-size: 16px;
+}
+.login-con .login-form-button{
+	width: 100%;
+}
+.login-bg .logo {
+	justify-content: center;
+}
+.login-bg .logo .text{
+	color: #666 !important;
+	font-size: 18px;
+}
+.login-bg .ant-input, .login-bg .ant-btn {
+	width: 86%;
+}
+.hea-admin {
+	float: right;
+	width: 300px;
+	padding-right: 30px;
+	text-align: right;
+	font-size: 16px;
+}
+.hea-admin-name{
+	padding: 0 20px;
+}
+.logout-btn{
+	cursor: pointer;
+}
+.head-title span{
+	font-size: 18px;
+	border-bottom: 2px solid #108EE9;
+	padding: 3px 6px;
+}
