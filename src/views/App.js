@@ -20,8 +20,6 @@ class App extends Component {
             img: '/static/images/logo.png'
         }
     }
-    componentWillMount() {
-    }
     componentDidMount() {
         if (!sessionStorage.getItem('token')) {
             $('.click-to-login').get(0).click()
@@ -34,11 +32,7 @@ class App extends Component {
     }
 
     render() {
-        console.log('---openid:', sessionStorage.getItem('openid'))
         let { children} = this.props
-        // let { location: { pathname } } = this.props
-        // let conHei = window.innerHeight - 80
-        // let flag = sessionStorage.getItem('openid') && pathname !== '/' // 非首页登录状态
         return (
             <div style={{width: '100%', height: '100%'}}>
                 { children }

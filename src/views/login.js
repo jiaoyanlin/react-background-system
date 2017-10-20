@@ -13,22 +13,18 @@ class NormalLoginForm extends React.Component {
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
 				console.log('点击登录: ', values)
-				$.post(rootPath + '/admin/login', {
+				$.post(rootPath + '/api/login', {
 					user: values.userName,
-					password: values.password,
-					'access_token': localStorage.getItem('access_token')
+					pwd: values.password
 				}, (data) => {
 					console.log('----登陆结果：', data)
-					if (data.success) {
-						let userInfo = data.data
-						this.props.setAdminuserinfo(userInfo)
-						sessionStorage.setItem('openid', userInfo.openid)
-						sessionStorage.setItem('user', userInfo.user)
+					if (data.code == 200) {
+						sessionStorage.setItem('token', data.result.token)
+						sessionStorage.setItem('id', data.result.id)
+						sessionStorage.setItem('user', values.userName)
 						$('.click-login').get(0).click()
-					} else if (data.error_code == 1001) {
-						message.error('登录失败: 密码错误')
-					} else if (data.error_code == 1000) {
-						message.error('登录失败: 账号不存在')
+					} else {
+						message.error(data.message)
 					}
 				})
 			}
@@ -106,7 +102,7 @@ class Login extends Component {
 export default createContainer(
 	({ app }) => {
 		return {
-			adminUserInfo: app.adminUserInfo
+			// adminUserInfo: app.adminUserInfo
 		}
 	},        // mapStateToProps,
 	require('ACTION/app/').default,    // mapActionCreators,

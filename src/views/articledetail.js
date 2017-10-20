@@ -17,7 +17,8 @@ class Calllist extends Component {
                 current: 1
             },
             loading: false,
-            searchText: ''
+            searchText: '',
+            articleId: ''
         }
     }
     handleTableChange = (pagination, filters, sorter) => {
@@ -92,17 +93,11 @@ class Calllist extends Component {
         })
     }
     componentDidMount() {
-        this.fetch({
-            current: 1
-        })
+        let id = this.props.params.id
         this.setState({
-            tableHei: document.querySelector('.main').offsetHeight - 360
+            articleId: id
         })
-        $(window).on('resize', () => {
-            this.setState({
-                tableHei: document.querySelector('.main').offsetHeight - 360
-            })
-        })
+        this.fetch()
     }
     render() {
         let { sortedInfo, filteredInfo } = this.state

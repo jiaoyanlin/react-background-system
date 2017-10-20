@@ -64,3 +64,38 @@
 	border-bottom: 2px solid #108EE9;
 	padding: 3px 6px;
 }
+.ant-layout-sider-collapsed .logo .text.hidden {
+	display: none;
+}
+
+/* list */
+.list {
+	padding: 10px 0;
+}
+.list .item {
+	padding: 5px 0;
+	display: flex;
+	align-items: top;
+}
+.list .item span {
+	display: inline-block;
+	width: 120px;
+}
+.list .pre-img {
+	width: 160px;
+	height: 160px;
+	border: 1px solid #eee;
+}
+.list .img-up {
+	position: relative;
+	margin-top: 10px;
+}
+.list .img-up .add_photo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}
+.list .item-img {
+	width: 100px;
+}

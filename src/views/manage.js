@@ -51,6 +51,12 @@ class App extends Component {
         })
     }
 
+    componentDidMount() {
+        if (!sessionStorage.getItem('token')) {
+            $('.click-to-login').get(0).click()
+        }
+    }
+
     render() {
         let { children } = this.props
         return (
@@ -63,7 +69,7 @@ class App extends Component {
                     >
                         <div className="logo">
                             <img className="logo-img" src="/static/images/head.jpg" alt=""/>
-                            <span className="text">后台系统</span>
+                            <span className="text hidden">后台系统</span>
                         </div>
                         <Menu theme="dark" mode="inline" defaultOpenKeys={['sub1']} defaultSelectedKeys={this.state.delSelKdy}>
                             <Menu.Item key="1" onClick={this.handleNav.bind(this, 'aaa')}>

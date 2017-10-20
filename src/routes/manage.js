@@ -21,6 +21,7 @@ export default {
 
   childRoutes: [
     require('./write').default,
-    require('./articlelist').default
+    require('./articlelist').default,
+    require('./articledetail').default
   ]
 }

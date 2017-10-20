@@ -26,7 +26,6 @@ export const ACTION_HANDLERS = {
   [SET_ADMINUSERINFO]: (adminUserInfo, { payload }) => {
     return {
         ...adminUserInfo,
-        openid: payload.openid,
         user: payload.user
       }
   }
