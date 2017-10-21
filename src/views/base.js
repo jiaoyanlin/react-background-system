@@ -203,7 +203,7 @@ class AnalysisDelete extends Component {
 export default createContainer(
     ({ app }) => {
         return {
-            wechatUserList: app.wechatUserList
+            // wechatUserList: app.wechatUserList
             // nowOnlineWechat: app.nowOnlineWechat,
             // adminSocket: app.adminSocket
         }

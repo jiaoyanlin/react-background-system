@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import createContainer from 'UTIL/createContainer'
-import { Link } from 'react-router'
+// import { Link } from 'react-router'
 import { rootPath } from 'SERVICE/xhr/config'
-import { Table, Button, Input, message, Icon } from 'antd'
+import { Table, Button, Input, message, Icon, Modal } from 'antd'
 
 class Calllist extends Component {
     constructor(props) {
@@ -58,6 +58,7 @@ class Calllist extends Component {
                         newData.push({
                             key: i,
                             title: list[i].title,
+                            content: list[i].content,
                             updateTime: list[i].updateTime,
                             id: list[i]._id
                         })
@@ -90,6 +91,40 @@ class Calllist extends Component {
         }, () => {
             this.fetch({current: 1})
         })
+    }
+    handleClickDelete = (id) => {
+        console.log('------------id:', id)
+        Modal.confirm({
+            title: '提示',
+            content: '确定删除该文章吗？',
+            okText: '确认',
+            cancelText: '取消',
+            onOk: () => {
+                $.post(rootPath + '/api/deleteArticle', {
+					token: sessionStorage.getItem('token'),
+                    user: sessionStorage.getItem('user'),
+                    id: sessionStorage.getItem('id'),
+                    articleId: id
+				}, (data) => {
+					console.log('----删除结果：', data)
+					if (data.code == 200) {
+                        message.success('删除成功')
+                        this.fetch({current: this.state.pagination.current})
+					} else {
+						message.error(data.message)
+					}
+				})
+            }
+        })
+    }
+    handleClickEdit = (title, content, id) => {
+        console.log('----------title', title)
+        console.log('----------content', content)
+        this.props.setArticle({
+            title,
+            content
+        })
+        window.location.href = '/#/manage/articlelist/detail/' + id
     }
     componentDidMount() {
         this.fetch({
@@ -133,10 +168,11 @@ class Calllist extends Component {
             render: (val, record, index) => {
                 return (
                     <div>
-                        <Link to={'/manage/articlelist/detail/' + record.id}>
+                        {/* <Link to={'/manage/articlelist/detail/' + record.id}>
                             <Button type="primary" size="small">编辑</Button>
-                        </Link>
-                        <Button type="danger" size="small" style={{marginLeft: 10}}>删除</Button>
+                        </Link> */}
+                        <Button type="primary" size="small" onClick={this.handleClickEdit.bind(this, record.title, record.content, record.id)}>编辑</Button>
+                        <Button type="danger" size="small" style={{marginLeft: 10}} onClick={this.handleClickDelete.bind(this, record.id)}>删除</Button>
                     </div>
                 )
             }
@@ -179,6 +215,6 @@ export default createContainer(
             // adminSocket: app.adminSocket
         }
     },        // mapStateToProps,
-    '',    // mapActionCreators,
+    require('ACTION/app/').default,    // mapActionCreators,
     Calllist // 木偶组件
 )

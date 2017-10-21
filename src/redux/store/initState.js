@@ -6,5 +6,10 @@ export default {
     adminUserInfo: {
         openid: '',
         user: ''
+    },
+    // 当前文章列表
+    nowArticle: {
+        title: '',
+        content: ''
     }
 }

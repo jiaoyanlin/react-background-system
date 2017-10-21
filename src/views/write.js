@@ -62,7 +62,7 @@ class AnalysisDelete extends Component {
     }
     render() {
         return (
-            <div className="analysis-delete">
+            <div>
                 <Spin spinning={this.state.loading} tip="加载中...">
                     <ul className="list">
                         <li className="item">

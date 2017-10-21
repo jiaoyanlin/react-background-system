@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import adminUserInfo from './adminUserInfo'
+import nowArticle from './nowArticle'
 
 export default combineReducers({
-	adminUserInfo: adminUserInfo
+	adminUserInfo: adminUserInfo,
+	nowArticle: nowArticle
 })
